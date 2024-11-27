@@ -7,6 +7,18 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_11():
+    import pandas as pd
+    df = pd.read_csv("files/input/tbl1.tsv", sep="\t")
+    df2 = df.groupby('c0')['c4'].apply(lambda x: ",".join(map(str, sorted(x)))).reset_index()
+    return df2
+
+
+if __name__ == "__main__":
+    resultado = pregunta_11()
+    if resultado is not None:
+        print(f"una tabla que contenga c0 y una lista separada por coma de los valores de la columna c4 del archivo {resultado}")
+    
+
     """
     Construya una tabla que contenga `c0` y una lista separada por ',' de
     los valores de la columna `c4` del archivo `tbl1.tsv`.

@@ -7,6 +7,17 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_05():
+    import pandas as pd
+    df = pd.read_csv("files/input/tbl0.tsv" , sep="\t")  # Usamos sep="\t" para archivos TSV
+    promedio =df.groupby('c1')['c2'].max()   # forma 2= promedio = df.groupby(by=['c1']).agg({'c2':'max'})
+    return promedio
+
+if __name__ == "__main__":
+    resultado = pregunta_05()
+    if resultado is not None:
+        print(f"el valor máximo de `c2` por cada letra en la columna `c1` es: {resultado}")
+
+
     """
     Calcule el valor máximo de `c2` por cada letra en la columna `c1` del
     archivo `tbl0.tsv`.

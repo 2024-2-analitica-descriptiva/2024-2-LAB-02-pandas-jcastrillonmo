@@ -7,7 +7,17 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_09():
-    """
+    import pandas as pd
+    df = pd.read_csv("files/input/tbl0.tsv" , sep="\t")  # Usamos sep="\t" para archivos TSV
+    df['year']= df['c3'].str.split('-', expand=True)[0]  # forma 2 df['c3'].str.split('-').str[0].
+    return df
+
+if __name__ == "__main__":
+    resultado = pregunta_09()
+    if resultado is not None:
+        print(f"la columna `year` contiene la siguiente información: {resultado}")
+
+"""
     Agregue el año como una columna al dataframe que contiene el archivo
     `tbl0.tsv`.
 

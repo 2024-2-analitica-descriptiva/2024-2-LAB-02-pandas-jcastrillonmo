@@ -6,7 +6,32 @@ librerias de pandas para resolver las preguntas.
 """
 
 
+
+
 def pregunta_12():
+     import pandas as pd
+     df = pd.read_csv("files/input/tbl2.tsv", sep="\t")
+    
+    # Crear una nueva columna que une 'c5a' y 'c5b' con ":"
+     df['c5'] = df['c5a'].astype(str) + ':' + df['c5b'].astype(str)
+    
+    # Ordenar los valores dentro de cada grupo
+     df_sorted = df.sort_values(by=['c0', 'c5'])
+    
+    # Agrupar por 'c0' y concatenar los valores ordenados de la columna 'c5'
+     df_grouped = df_sorted.groupby('c0')['c5'].agg(','.join).reset_index(name='c5')
+    
+     return df_grouped
+
+
+if __name__ == "__main__":
+    # Obtener el resultado de la función
+    resultado = pregunta_12()
+    
+    if resultado is not None:
+        print(resultado)
+
+    
     """
     Construya una tabla que contenga `c0` y una lista separada por ','
     de los valores de la columna `c5a`  y `c5b` (unidos por ':') de la

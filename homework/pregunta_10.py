@@ -7,6 +7,20 @@ librerias de pandas para resolver las preguntas.
 
 
 def pregunta_10():
+    import pandas as pd
+    df = pd.read_csv("files/input/tbl0.tsv", sep="\t")
+    df2 = df.groupby('c1')['c2'].apply(lambda x: ":".join(map(str, sorted(x)))) # Agrupar por 'c1' y concatenar los valores de 'c2' ordenados y separados por ":"
+    df2 = df2.reset_index(name='c2').set_index('c1')  # Convertir el resultado a un DataFrame para que coincida con el formato requerido
+    return df2
+
+
+if __name__ == "__main__":
+    resultado = pregunta_10()
+    if resultado is not None:
+        print(f"los valores de la columna c2 separados por : {resultado}")
+
+
+
     """
     Construya una tabla que contenga `c1` y una lista separada por ':' de los
     valores de la columna `c2` para el archivo `tbl0.tsv`.
